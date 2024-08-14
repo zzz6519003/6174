@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑洞数 6174 游戏</title>
+    <style>
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .step {
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        .step.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>黑洞数 6174 游戏</h1>
+    <input type="text" id="numberInput" placeholder="输入四位数">
+    <button onclick="calculateKaprekar()">计算</button>
+    <div id="result"></div>
+
+    <script>
+        function calculateKaprekar() {
+            let num = document.getElementById("numberInput").value;
+            let resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = ""; // Clear previous results
+
+            if (num.length !== 4 || !/^\d+$/.test(num)) {
+                resultDiv.innerHTML = "请输入一个有效的四位数！";
+                return;
+            }
+
+            let steps = [];
+            let stepDivs = [];
+
+            while (num !== "6174") {
+                let asc = num.split('').sort().join('');
+                let desc = asc.split('').reverse().join('');
+                let difference = (parseInt(desc) - parseInt(asc)).toString().padStart(4, '0');
+                steps.push({ asc, desc, difference });
+                num = difference;
+            }
+
+            steps.forEach((step, index) => {
+                let stepDiv = document.createElement("div");
+                stepDiv.className = "step";
+                stepDiv.innerHTML = `步骤 ${index + 1}: ${step.desc} - ${step.asc} = ${step.difference}`;
+                resultDiv.appendChild(stepDiv);
+                stepDivs.push(stepDiv);
+            });
+
+            // Animate steps
+            setTimeout(() => {
+                stepDivs.forEach((div, index) => {
+                    setTimeout(() => {
+                        div.classList.add("show");
+                    }, index * 1000); // Show each step with a delay
+                });
+            }, 100);
+            
+            // Show final result
+            setTimeout(() => {
+                let finalDiv = document.createElement("div");
+                finalDiv.innerHTML = "最终结果: 6174";
+                resultDiv.appendChild(finalDiv);
+            }, steps.length * 1000 + 1000);
+        }
+    </script>
+</body>
+</html>
