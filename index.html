@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>black hole number 黑洞数 6174</title>
+    <title>Black Hole Number 6174</title>
     <style>
         #result {
             margin-top: 20px;
@@ -19,14 +19,14 @@
     </style>
 </head>
 <body>
-    <h1>black hole number 黑洞数 6174 游戏</h1>
-    <input type="text" id="numberInput" placeholder="输入四位数" onkeypress="checkEnter(event)">
-    <button onclick="calculateKaprekar()">计算</button>
+    <h1>Black Hole Number 6174 Game</h1>
+    <input type="text" id="numberInput" placeholder="Enter a four-digit number" onkeypress="checkEnter(event)">
+    <button onclick="calculateKaprekar()">Calculate</button>
     <div id="result"></div>
 
     <script>
         window.onload = function() {
-            document.getElementById("numberInput").focus(); // 自动聚焦到输入框
+            document.getElementById("numberInput").focus(); // Automatically focus on the input field
         };
 
         function checkEnter(event) {
@@ -41,7 +41,7 @@
             resultDiv.innerHTML = ""; // Clear previous results
 
             if (num.length !== 4 || !/^\d+$/.test(num) || new Set(num).size === 1) {
-                resultDiv.innerHTML = "请输入一个有效的四位数，且四位数不能完全相同！";
+                resultDiv.innerHTML = "Please enter a valid four-digit number, and the digits cannot be all the same!";
                 return;
             }
 
@@ -59,7 +59,7 @@
             steps.forEach((step, index) => {
                 let stepDiv = document.createElement("div");
                 stepDiv.className = "step";
-                stepDiv.innerHTML = `步骤 ${index + 1}: ${step.desc} - ${step.asc} = ${step.difference}`;
+                stepDiv.innerHTML = `Step ${index + 1}: ${step.desc} - ${step.asc} = ${step.difference}`;
                 resultDiv.appendChild(stepDiv);
                 stepDivs.push(stepDiv);
             });
@@ -76,7 +76,7 @@
             // Show final result
             setTimeout(() => {
                 let finalDiv = document.createElement("div");
-                finalDiv.innerHTML = "最终结果: 6174";
+                finalDiv.innerHTML = "Final Result: 6174";
                 resultDiv.appendChild(finalDiv);
             }, steps.length * 1000 + 1000);
         }
